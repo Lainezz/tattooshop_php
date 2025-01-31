@@ -38,7 +38,7 @@ class UsuarioModel {
     public function login($email, $password)
     {
         // 1º Realizar la conexión
-        $this->conexion = $this->dbHandler->connect();
+        $this->conexion = $this->dbHandler->conectar();
 
         // a) CREAR LA QUERY
         $sql = "SELECT email, password FROM $this->tabla WHERE email = ? AND password = ?";
