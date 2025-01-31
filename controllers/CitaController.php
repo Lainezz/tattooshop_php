@@ -1,6 +1,7 @@
 <?php
 
     require_once "./models/CitaModel.php";
+    require_once "./models/TatuadorModel.php";
 
     class CitaController {
 
@@ -9,6 +10,7 @@
         En este caso tenemos CitaModel -> Para poder acceder a la Base de Datos
         */
         private $citaModel;
+        private $tatuadorModel;
 
         /*
         CONSTRUCTOR DE CLASE
@@ -17,12 +19,15 @@
         */
         public function __construct() {
             $this->citaModel = new CitaModel();
+            $this->tatuadorModel = new TatuadorModel();
         }
 
         /**
          * Método para mostrar el view de AltaCita -> Contiene la página para dar de alta una cita
          */
         public function showAltaCita($errores = []) {
+            
+            $tatuadores = $this->tatuadorModel->getAll();
             require_once "./views/citasViews/AltaCitaView.php";
         }
 

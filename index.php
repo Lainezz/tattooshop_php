@@ -21,21 +21,46 @@
 
     // QUEREMOS LLAMAR A UN CONTROLLER U OTRO DEPENDIENDO DE LA $REQUESTURI
     switch ($requestUri) {
-        // 1er caso -> si llamamos a la uri de alta
-        case "/tattooshop_php/citas/alta":
-            $citaController = new CitaController();
-            $requestMethod = $_SERVER["REQUEST_METHOD"]; // va a ser GET o POST
-            
-            if($requestMethod == "GET") {
-                $citaController->showAltaCita();
-            } elseif($requestMethod == "POST") {
-                $datos = $_POST ?? [];
-                $citaController->insertCita($datos);
-            }
-
-            
+        case "/tattooshop_php/index":
+        case "/tattooshop_php/":
+            // MOSTRAMOS LA PAGINA DE LOGIN
+            echo "LOGIN PAGE";
             break;
-        // caso por defecto -> llamamos a 404
+        
+        case "/tattooshop_php/tatuadores/alta":
+            session_start(); // Para poder usar $_SESSION
+            if(!isset($_SESSION) || !isset($_SESSION["usuario"])) {
+                echo "LOGIN PAGE";
+            } else {
+                echo "ALTA TATUADOR";
+            }
+            break;
+
+        // case -> si llamamos a la uri de alta de cita
+        case "/tattooshop_php/citas/alta":
+
+            session_start(); // Para poder usar $_SESSION
+            if (!isset($_SESSION) || !isset($_SESSION["usuario"])) {
+                echo "LOGIN PAGE";
+            } else {
+                $citaController = new CitaController();
+                $requestMethod = $_SERVER["REQUEST_METHOD"]; // va a ser GET o POST
+
+                if ($requestMethod == "GET") {
+                    $citaController->showAltaCita();
+                } elseif ($requestMethod == "POST") {
+                    $datos = $_POST ?? [];
+                    $citaController->insertCita($datos);
+                }
+            }
+        
+            break;
+        
+        
+        // 2o case -> llamamos a la uri de alta de tatuador
+        
+
+        // case por defecto -> llamamos a 404
         default:
             echo "<h1>PAGINA NO ENCONTRADA</h1>";
             break;
