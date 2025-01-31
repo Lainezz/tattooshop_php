@@ -2,7 +2,7 @@
 
 require_once './database/DBHandler.php'; // Incluir la clase DBHandler
 
-class UsuariosModel {
+class UsuarioModel {
     // ATRIBUTOS DE CLASE
     private $dbHandler; // INSTANCIA DE LA CLASE DBHANDLER
     private $conexion;  // LA CONEXIÓN A LA BDD
@@ -56,9 +56,9 @@ class UsuariosModel {
         }
 
         if(!empty($usuarios)) {
-            echo "Bienvenid@".$email;
+            return true;
         } else {
-            echo "ACCESO DENEGADO";
+            return false;
         }
     }
 

@@ -51,6 +51,9 @@ class UsuarioController
 
             if ($operacionExitosa) {
                 // LLAMAR A UNA PÁGINA QUE MUESTRE UN MENSAJE DE ÉXITO
+                session_start();
+                $_SESSION["usuario"] = $input_email;
+
                 $citaController = new CitaController();
                 $citaController->showAltaCita();
             } else {
