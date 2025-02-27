@@ -39,7 +39,7 @@
                 $usuarioController->doLogin($datos);
             }
 
-            break;
+            break; // comentario
         
         case "/tattooshop_php/tatuadores/alta":
             session_start(); // Para poder usar $_SESSION
